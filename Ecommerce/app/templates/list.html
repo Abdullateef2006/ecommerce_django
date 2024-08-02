@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+
+
+{% block content %}
+<div>
+    <div id="product">
+
+        <div id="productSide">
+            <div id="filterproduct_">
+
+                <p><a href="{% url 'list' %}">all</a></p>
+
+                <i class="fa-solid fa-list-ul fa-lg" style="color: #000000;"></i>
+
+            </div>
+
+            {% for category in category %}
+            <!-- <h2> <a href="{% url 'list_category' category.uu_id %}">{{ category.title }}</a></h2> -->
+            <div id="filterProduct">
+                <div id="productitems">
+                    <p> <a href="{% url 'list_category' category.uu_id %}">{{ category.title }}</a></p>
+                    <i class="fa-solid fa-angle-right fa-lg" style="color: #000000;"></i>
+                </div>
+            </div>
+
+            {% endfor %}
+
+        </div>
+        <div id="product_list">
+            <div>
+                <h3>{{category_get}}</h3>
+            </div>
+            <div id="product__item">
+
+                {% for product in product %}
+                {% if product.item_remaining == 0 %}
+
+                <div id="product_listing">
+                    <div id="product_box">
+                        <div id="product_img">
+                            <img src="image.png" alt="">
+                        </div>
+                        <div id="__title">
+                            <div id="product__title">
+                                <h4 id="title1">{{product.title}}</h4>
+                                <p id="title2">{{product.description}}</p>
+                            </div>
+                            <div id="title__btn">
+                                <button>{{product.priceTwo}}</button>
+                            </div>
+                            <p>out of stock</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                {% else %}
+                <div id="product__item">
+                    <div id="product_listing">
+                        <div id="product_box">
+                            <div id="product_img">
+                                <img src="{{product.image.url}}" alt="">
+                            </div>
+                            <div id="__title">
+                                <div id="product__title">
+                                    <h4 id="title1"><a href="{% url 'details' product.uu_id %}">{{product.title}}</a>
+                                    </h4>
+                                    <p id="title2" style="width: 140px;">{{product.description}}</p>
+                                </div>
+                                <div id="title__btn">
+                                    <button> &#8358 {{product.priceTwo|intcomma}}</button>
+                                </div>
+
+
+                            </div>
+                            <div
+                                style="display: flex; align-items:center; justify-content:space-between; margin-top:10px;">
+                                <p>item remaining : {{product.item_remaining}}</p>
+                                <a href="{% url 'wishlist' product.uu_id %}"> <i class="fa-regular fa-heart fa-lg"
+                                        style="color: red; " onclick="wishlist()" id="wishlist"></i></a>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+                {% endif %}
+                {% empty %}
+                <p style="margin-top: 30px;"> {{category_get}} cartegory is empty</p>
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+
+    {% include "pagination.html" with page=product %}
+
+
+
+
+
+
+
+
+    {% endblock content %}

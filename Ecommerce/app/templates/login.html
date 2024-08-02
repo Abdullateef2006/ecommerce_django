@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+
+
+{% block title %}
+login
+
+{% endblock title %}
+
+{% block content %}
+<div>
+    <div>
+        
+    </div>
+
+    <div class="content" style="padding-top: 50px;">
+        <div class="l4-side">
+            <!-- <img src="edited.jpg" alt="the woman"> -->
+        </div>
+        <div class="r-side">
+            <h2>Sign in </h2>
+            {% for message in messages %}
+        <p style="color: red; margin-top:30px;"> {{message}}</p>
+
+        {% endfor %}
+
+            <form method="post">
+                {% csrf_token %}
+
+                <label for="new-password">username </label>
+                <input type="text" name="username" id="new-password">
+
+                <p>must be at least 8 characters</p>
+
+                <label for="confirm-password">Password</label>
+                <input type="password" name="password" id="confirm-password">
+
+                <div class="error"></div>
+                <button type="submit"> Login</button>
+
+            </form>
+
+            <p class="btn-sib">Don't have an account register <span><a href="{% url 'signup'%}">here</a></span></p>
+        </div>
+    </div>
+
+
+
+</div>
+
+{% endblock content %}

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+
+
+{% block title %}
+signup
+    
+{% endblock title %}
+
+{% block content %}
+<div>
+
+
+
+
+    <div class="content" style="padding-top: 40px;">
+        <div class="l4-side">
+            <!-- <img src="edited.jpg" alt="the woman"> -->
+        </div>
+        <div class="r-side">
+            <h2>Sign up page</h2>
+            {% for message in messages  %}
+            <p style="margin-top: 30px; color:red;">{{message}}</p>
+            
+        {% endfor %}
+
+            <form method="post">
+                {% csrf_token %}
+
+                <label for="new-password">username </label>
+                <input type="text" name="username" id="new-password">
+
+                <p>must be at least 8 characters</p>
+
+                <label for="new-password">email </label>
+                <input type="email" name="email" id="new-password">
+
+                <label for="confirm-password">Password</label>
+                <input type="password" name="password1" id="confirm-password">
+                <label for="confirm-password">Password</label>
+                <input type="password" name="password2" id="confirm-password">
+
+                <div class="error"></div>
+                <button type="submit"> Register</button>
+
+            </form>
+
+            <p class="btn-sib">Already have an account login <span><a href="{% url 'login'%}">here</a></span></p>
+        </div>
+    </div>
+</div>
+    
+{% endblock content %}
+    
+    

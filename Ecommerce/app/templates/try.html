@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Signika+Negative&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
+    * {
+        top: 0;
+        box-sizing: border-box;
+        padding: 0;
+        list-style: none;
+        text-decoration: none;
+        font-family: 'Signika Negative', sans-serif;
+        margin: 0;
+        top: 0;
+        left: 0;
+
+    }
+
+    #navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 40px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+        width: 100%;
+        position: sticky;
+        top: 0;
+        left: 0;
+        background-color: white;
+        z-index: 1000;
+        margin: 0;
+    }
+
+    #nav-left {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    #navbar #nav-middle ul,
+    #navbar #nav-middle ul li a {
+        display: flex;
+        gap: 20px;
+        color: black;
+    }
+
+    #nav-right {
+        display: flex;
+        gap: 12px;
+    }
+
+    #box {
+        display: none;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 12px;
+        gap: 12px;
+
+        width: 44px;
+        height: 44px;
+
+        background: #F6F6F6;
+        border-radius: 8px;
+
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+
+    }
+
+    #nav-right div {
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 12px;
+        gap: 12px;
+
+        width: 44px;
+        height: 44px;
+
+        background: #F6F6F6;
+        border-radius: 8px;
+
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+
+
+    }
+
+    #nav-middle2 input {
+        /* button */
+
+        /* Auto layout */
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 12px 20px;
+        gap: 12px;
+
+        width: 267px;
+        height: 44px;
+
+
+        background: #F6F6F6;
+        border-radius: 8px;
+        border: none;
+
+    }
+
+    .sidebar {
+        width: 50%;
+        background-color: white;
+        height: 100%;
+        position: fixed;
+        padding-top: 15px;
+        padding-left: 40px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+        transition: left 0.3s ease;
+        z-index: 1001;
+        left: -100%;
+
+
+
+    }
+
+
+
+    #sidebar_list ul {
+        display: flex;
+        flex-direction: column;
+        gap: 35px;
+    }
+
+
+    .sidebar_link a {
+        color: black;
+
+
+    }
+
+    .sidebar_link {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 12px;
+        gap: 12px;
+
+        height: 44px;
+
+        background: #F6F6F6;
+        border-radius: 8px;
+
+        order: 0;
+        flex-grow: 0;
+
+    }
+
+    #shop {
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 16px 32px;
+        gap: 12px;
+
+        border: none;
+        width: 30%;
+        background: #FFFFFF;
+        border-radius: 8px;
+
+    }
+
+    #hero1 {
+        background: rgb(21, 169, 214);
+        padding-left: 90px;
+        padding-right: 90px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        display: flex;
+        width: 100%;
+        align-items: center;
+
+    }
+
+    #hero1-left {
+        color: white;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        width: 50%;
+        padding-left: 40px;
+    }
+
+    #hero1-right {
+        padding-left: 40px;
+
+    }
+
+
+    #hero2 {
+        display: flex;
+        padding-top: 100px;
+        padding-bottom: 100px;
+        gap: 5%;
+        width: 100%;
+        padding-left: 10%;
+        padding-right: 10%;
+
+
+    }
+
+    #hero2box {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        background: rgb(255, 165, 0);
+        padding-left: 40px;
+        width: 50%;
+
+        padding-right: 20px;
+        border-radius: 20px;
+        /* High coziness */
+
+
+        filter: drop-shadow(2px 2px 10px rgba(0, 0, 0, 0.4));
+
+    }
+
+    #hero2image img {
+        width: 220px;
+    }
+
+    #hero2box_left {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        color: white;
+        width: 50%;
+    }
+
+    #hero2image {
+        width: 50%;
+    }
+
+    #hero2image img {
+        width: 90%;
+    }
+
+    #hero2block1 {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+
+    #hero1-left #text2 h1 {
+        font-size: 60px;
+    }
+
+    @media (max-width: 1150px) {
+
+        #box {
+            display: flex;
+        }
+
+        #nav-middle {
+            display: none;
+        }
+
+        #nav-middle2 {
+            display: none;
+        }
+
+    
+
+        #hero1-left {
+            width: 100%;
+            text-align: center;
+        }
+
+        #shop {
+            width: 60%;
+            margin-left: 18%;
+        }
+
+        #hero1 {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .show {
+
+            width: 50%;
+            background-color: white;
+            height: 100%;
+            position: fixed;
+            padding-top: 15px;
+            padding-left: 40px;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            padding-right: 90px;
+            left: 0;
+            transition: left 0.3s ease;
+
+        }
+
+        #hero2 {
+            flex-direction: column;
+            padding-left: 10%;
+            padding-right: 10%;
+            gap: 40px;
+
+        }
+
+        #hero2box {
+            width: 100%;
+
+        }
+
+
+
+
+
+
+    }
+</style>
+
+<body>
+    <div id="wholebody">
+        <div id="navbar">
+
+            <div id="nav-left">
+                <div id="box"> <i class="fa-solid fa-bars fa-lg" style="color: #000000;" onclick="toggleSide()"></i>
+                </div>
+                <img src="image.png" alt="" width="120px">
+            </div>
+            <div id="nav-middle">
+                <ul>
+                    <li><a href="" class="links">Shop</a></li>
+                    <li><a href="" class="links">men</a></li>
+                    <li><a href="" class="links">women</a></li>
+                    <li><a href="" class="links">combo</a></li>
+                    <li><a href="" class="links">Joggers</a></li>
+
+                </ul>
+            </div>
+            <div id="nav-middle2">
+                <input type="search" name="" id="" placeholder="search here">
+            </div>
+            <div id="nav-right">
+                <div><i class="fa-regular fa-heart fa-lg" style="color: #000000;"></i></div>
+                <div><i class="fa-regular fa-user fa-lg" style="color: #000000;"></i></div>
+                <div><i class="fa-solid fa-cart-shopping fa-lg" style="color: #000000;"></i></div>
+            </div>
+        </div>
+        <div class="sidebar">
+            <div id="nav-left">
+                <div id="box"> <i class="fa-solid fa-bars fa-lg" style="color: #000000;" onclick="toggleSide()"></i>
+                </div>
+                <img src="image.png" alt="" width="120px">
+            </div>
+            <div id="sidebar_list">
+                <div>
+                    <ul>
+                        <li class="sidebar_link"><a href="">Home</a></li>
+                        <li class="sidebar_link"><a href="">About</a></li>
+                        <li class="sidebar_link"><a href="">Contact us</a></li>
+                        <li class="sidebar_link"><a href="">message us</a></li>
+                        <li class="sidebar_link"><a href="">call us</a></li>
+
+
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="hero1">
+            <div id="hero1-left">
+                <div id="text1">
+                    <h2>T shirt / Tops</h2>
+                </div>
+                <div id="text2">
+                    <h1>Summer value pack gotten here</h1>
+                </div>
+                <div id="text3">
+                    <h2>Cool / colourful / comfy</h2>
+                </div>
+                <button id="shop">Shop now</button>
+            </div>
+            <div id="hero1-right">
+                <img src="./img/girl.png" alt="">
+            </div>
+        </div>
+        <div id="hero2">
+            <div id="hero2box">
+                <div id="hero2box_left">
+                    <div id="hero2block1">
+                        <h3>Low prize</h3>
+                        <h1>High coziness for easy wearing</h1>
+                        <h3>up to 50% off</h3>
+                    </div>
+                    <div id="hero2block2">
+                        <li>Explore items</li>
+                    </div>
+                </div>
+                <div id="hero2image"><img src="./img/girl.png" alt=""></div>
+            </div>
+            <div id="hero2box">
+                <div id="hero2box_left">
+                    <div id="hero2block1">
+                        <h3>Low prize</h3>
+                        <h1>High coziness for easy wearing</h1>
+                        <h3>up to 50% off</h3>
+                    </div>
+                    <div id="hero2block2">
+                        <li>Explore items</li>
+                    </div>
+                </div>
+                <div id="hero2image"><img src="./img/girl.png" alt=""></div>
+            </div>
+        </div>
+        <div id="hero3">
+
+        </div>
+
+
+
+    </div>
+    <script>
+        let sidebar = document.querySelector(".sidebar")
+
+        function toggleSide() {
+            sidebar.classList.toggle("show")
+
+
+        }
+    </script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" contents="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+        transition: all .2s linear;
+
+
+    }
+
+    body {
+        scroll-behavior: smooth;
+    
+    }
+
+    footer {
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        box-shadow: #0000001a 0px 4px 12px;
+        background-color: #f9f9f9;
+
+    }
+
+    footer .contents {
+        max-width: 1350px;
+        margin: auto;
+        margin-bottom: 40px;
+        padding: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+
+
+
+
+    footer .contents .topic {
+        font-size: 22px;
+        font-weight: 600;
+        color: black;
+        margin-bottom: 16px;
+    }
+
+    footer .contents p {
+        text-align: justify;
+    }
+
+
+    footer .contents .lower i {
+        padding-right: 16px;
+    }
+
+    footer .contents .middle {
+        padding-left: 80px;
+    }
+
+    footer .contents .middle a {
+        line-height: 32px;
+    }
+
+    #email {
+        height: 45px;
+        width: 100%;
+        outline: none;
+        color: black;
+        background: white;
+        border-radius: 5px;
+        padding-left: 10px;
+        font-size: 17px;
+        border: 2px solid #222222;
+    }
+
+    footer .contents .right input[type="submit"] {
+        height: 42px;
+        width: 100%;
+        font-size: 18px;
+        color: black;
+        background: #8A33FD;
+        outline: none;
+        border-radius: 5px;
+        letter-spacing: 1px;
+        cursor: pointer;
+        margin-top: 12px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .contents .right input[type="submit"]:hover {
+        background: none;
+        color: #8A33FD;
+    }
+
+
+
+
+    footer .contents .media-icons a {
+        font-size: 16px;
+        height: 45px;
+        width: 45px;
+        display: inline-block;
+        text-align: center;
+        line-height: 43px;
+        border-radius: 5px;
+        border: 2px solid #222222;
+        margin: 30px 5px 0 0;
+        transition: all 0.3s ease;
+    }
+
+    .contents .media-icons a:hover {
+        border-color: #8A33FD;
+    }
+
+    footer .bottom {
+        width: 100%;
+        text-align: right;
+        color: black;
+        padding: 0 40px 5px 0;
+        margin-bottom: 0;
+
+    }
+
+    footer .bottom a {
+        color: #8A33FD;
+    }
+
+    footer a {
+        transition: all 0.3s ease;
+    }
+
+    footer a:hover {
+        color: #8A33FD;
+    }
+
+    #middle_box {
+        margin-top: 65px;
+        padding-left: 30px;
+    }
+
+
+    #middle_box div a {
+        color: black;
+    }
+
+    .upper p {
+        color: black;
+    }
+    .lower .phone a, .lower .email a {
+        color: black;
+    }
+    #left_box {
+        width: 33%;
+        transition: all 0.4s ease;
+        padding-left: 30px;
+    }
+
+    #left_box .upper p {
+        text-align: center;
+    }
+
+    #right_box {
+        margin-top: 60px;
+        padding-left: 30px;
+        padding-right: 15px;
+    }
+
+    #icon_arrow {
+        margin-right: 20px;
+        color: #8A33FD;
+    }
+
+    a:hover {
+        margin-left: 10px;
+    }
+
+    i {
+        color: #8A33FD;
+    }
+
+
+    
+
+    @media (max-width:1100px) {
+        footer .contents .middle {
+            padding-left: 50px;
+        }
+    }
+
+    @media (max-width:950px) {
+        footer .contents .box {
+            width: 50%;
+        }
+
+        .contents .right {
+            margin-top: 40px;
+        }
+    }
+
+    @media (max-width:560px) {
+        footer {
+            position: relative;
+        }
+
+        footer .contents .box {
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        footer .contents .middle {
+            padding-left: 0;
+        }
+    }
+
+  
+ 
+
+</style>
+
+<body>
+    <footer style="margin-top: 40px;">
+        <div class="contents">
+                <div class="middle box" id="middle_box">
+                    <div class="topic"></i>Extra link</div>
+                    <div><a href="#"> <i class="fa-solid fa-arrow-right" id="icon_arrow"></i>Account info</a></div>
+                    <div><a href="#"> <i class="fa-solid fa-arrow-right" id="icon_arrow"></i>Ordered item</a></div>
+                    <div><a href="#"><i class="fa-solid fa-arrow-right"  id="icon_arrow"></i>Privacy policy</a></div>
+                    <div><a href="#"><i class="fa-solid fa-arrow-right"  id="icon_arrow"></i>Payment method</a></div>
+                    <div><a href="#"><i class="fa-solid fa-arrow-right"  id="icon_arrow"></i>Our services</a></div>
+                </div>
+           
+            <!-- </div> -->
+            <div class="lower" style="margin-top: 55px; line-height:50px; margin-left:30px;">
+                <div class="topic">Contact us</div>
+                <div class="phone" style="display: flex; align-items:center;">
+                    <i class="fa-solid fa-location-dot"></i><a href="tel:+2348089754705">12, Oghoanina Drive, Idowu Egba Busstop </a> 
+                </div>
+                <div class="phone" style="display: flex; align-items:center;">
+                    <i class="fas fa-phone-volume"></i><a href="tel:+2348089754705">08089754705</a> 
+                </div>
+                <div class="email" style="display: flex; align-items:center;">
+                    <i class="fas fa-envelope"></i><a href="mailto:ojugbelelateef2006@gmail.com/">ojugbelelateef2006@gmail.com</a>
+                </div>
+            </div>
+            <div class="middle box" id="middle_box">
+                <div class="topic">Our Services</div>
+                <div><a href="#"><i class="fa-solid fa-arrow-right"  id="icon_arrow"></i>Sales of clothes </a></div>
+                <div><a href="#"><i class="fa-solid fa-arrow-right"  id="icon_arrow"></i>Baking of bags</a></div>
+                <div><a href="#"><i class="fa-solid fa-arrow-right"  id="icon_arrow"></i>Sales of plaazzo</a></div>
+                <div><a href="#"><i class="fa-solid fa-arrow-right"  id="icon_arrow"></i>Tailoring and fashion designing</a></div>
+                <div><a href="#"><i class="fa-solid fa-arrow-right"  id="icon_arrow"></i>Home delivery</a></div>
+            </div>
+            <div class="right box" id="right_box">
+                <div class="topic">Subscribe us</div>
+                    <input type="email" placeholder="Enter email address" id="email">
+                    <input type="submit" name="" value="Send" id="btnFooter">
+                    <div class="media-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.link/6tu8io"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+            </div>
+        </div>
+        <div class="bottom" style="padding-bottom: 30px;" >
+            <p style="text-align: center;">Copyright © 2023 <a href="#">Abdullateef</a> All rights reserved</p>
+        </div>
+    </footer>
+</body>
+
+</html>

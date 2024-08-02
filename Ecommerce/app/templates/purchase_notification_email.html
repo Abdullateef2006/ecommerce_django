@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<style>
+    * {
+        list-style: none;
+    }
+</style>
+<body>
+    <h1>New Purchase Notification</h1>
+    <p>Hello Seller,</p>
+    <p>A new purchase has been made:</p>
+    <ul>
+        {% for purchases in product_name  %}
+        product list
+
+            <li>Product: {{ purchases.name }}</li>
+            <li >Quantity : {{purchases.quantity}}</li>
+            <li >color : {{purchases.color}}</li>
+            <li >size : {{purchases.size}}</li>
+            <li>Amount: {{ purchases.name.priceTwo }}</li>
+      
+            
+        {% endfor %}
+
+        {% for pro in profile  %}
+         <li>Home Address : {{pro.home_address}}</li>
+         <li>phone number : {{pro.phone_number}}</li>
+         <li>contact info : {{pro.contact_info}}</li>
+
+         
+
+
+        {% endfor %}
+
+        <li>total price : {{total_price}} </li>
+
+        <li>Buyer : {{username}}</li>
+        <li>Buyer email : {{email}}</li>
+
+
+
+    </ul>
+    <p>Thank you for using our platform.</p>
+</body>
+</html>

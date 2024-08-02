@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+
+
+{% block title %}
+logout
+
+{% endblock title %}
+
+{% block content %}
+<link
+href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+rel="stylesheet"
+/>
+
+
+
+
+<style>
+    /* Container styling */
+    #con {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 70vh;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    /* Content box styling */
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+
+        box-shadow: 0 2px 8px rgba(99, 99, 99, 0.2);
+        animation: slideDown 1s ease-in-out;
+        width: 25rem;
+        height: 25rem;
+    }
+
+    /* Icon styling */
+    #ico {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100px;
+        height: 100px;
+        font-size: 30px;
+        background-color: #B085FF;
+        border-radius: 50%;
+    }
+
+    /* Slide down animation */
+    @keyframes slideDown {
+        from {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+</style>
+
+<div id="con">
+    <div class="content">
+        <div id="ico">
+            <i class="fa-solid fa-right-from-bracket fa-rotate-180 fa-lg"
+            style="color: #000000;"></i>
+        </div>
+        <h1>Logged out</h1>
+        <p> You have been successfully logged out. </p>
+        <p> You can <a href="{% url 'login' %}">log-in again</a>.</p>
+
+    </div>
+</div>
+
+{% endblock content %}

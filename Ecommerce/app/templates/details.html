@@ -1,0 +1,512 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+
+{% block content %}
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&family=Space+Grotesk:wght@500;700&display=swap");
+
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        font-size: 62.5%;
+    }
+
+    :root {
+        --Orange: #8A33FD;
+        --Paleorange: hsl(25, 100%, 94%);
+        --verydark: hsl(220, 13%, 13%);
+        --Darkgrayish: hsl(219, 9%, 45%);
+        --Grayish: hsl(220, 14%, 75%);
+        --Lightgrayish: hsl(223, 64%, 98%);
+        --White: hsl(0, 0%, 100%);
+    }
+
+    /* Utility Classes */
+    body {
+        font-family: "Kumbh Sans", sans-serif;
+        font-size: 1.6rem;
+        margin: 0;
+        padding: 0;
+    }
+
+    p {
+        font-size: 1.6rem;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    /* Product Section */
+    #products {
+        margin-top: 15rem;
+        position: relative;
+        width: 100%;
+        margin-bottom: 60px;
+    }
+
+    .container {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .producat_wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 14rem;
+    }
+
+    .producat_image {
+        flex: 1;
+    }
+
+    .img_thumbnail {
+        width: 100%;
+        height: 500px; /* Fixed height for the image container */
+        position: relative;
+        overflow: hidden; /* Hide overflow to maintain the aspect ratio */
+    }
+
+    .img_thumbnail img {
+        width: 100%; /* Full width to cover the container */
+        height: 100%; /* Full height to cover the container */
+        object-fit: cover; /* Ensure the image covers the container without distortion */
+        border-radius: 10px; /* Rounded corners */
+        cursor: pointer;
+    }
+
+    .img_small {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 3rem;
+        width: 90%;
+        margin-left: auto;
+    }
+
+    .img_small img {
+        object-fit: cover;
+        width: 22%;
+    }
+
+    .img_small img.active {
+        border: 2px solid var(--Orange);
+        opacity: 0.3;
+    }
+
+    .company_txt {
+        color: var(--Orange);
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: 2px;
+        font-size: 1.2rem;
+    }
+
+    .producat_content {
+        flex: 1;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .producat_content h2 {
+        font-size: 4rem;
+        margin: 1rem 0;
+        width: 60%;
+    }
+
+    .producat_des {
+        margin: 2rem 0;
+        width: 65%;
+        font-size: 1.5rem;
+        line-height: 1.56;
+        color: var(--Darkgrayish);
+    }
+
+    .price {
+        margin-top: 2rem;
+    }
+
+    .dicscount_price {
+        display: flex;
+        align-items: center;
+    }
+
+    .normal_price {
+        font-size: 2.5rem;
+        font-weight: 700;
+    }
+
+    .dicscount_price span {
+        font-weight: normal;
+        font-size: 1.5rem;
+        background-color: #ffeee2;
+        padding: 0 0.5rem;
+        color: var(--Orange);
+        font-weight: 700;
+        margin-left: 1rem;
+    }
+
+    .total_price {
+        text-decoration: line-through;
+        color: var(--Grayish);
+        margin: 1rem 0;
+    }
+
+    .qty {
+        display: flex;
+        align-items: center;
+        margin-top: 3rem;
+    }
+
+    .btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .btns button {
+        outline: none;
+        border: none;
+        background-color: var(--Lightgrayish);
+        color: var(--Orange);
+        padding: 0.7rem 1.2rem;
+        font-size: 2rem;
+        font-family: inherit;
+        cursor: pointer;
+    }
+
+    .btns button:active {
+        transform: scale(0.98);
+    }
+
+    .btns .qty_numbers {
+        color: var(--Darkgrayish);
+        font-weight: 600;
+    }
+
+    .add_cart {
+        outline: none;
+        border: none;
+        background-color: var(--Orange);
+        font-family: inherit;
+        color: var(--White);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 6rem;
+        border-radius: 5px;
+        margin-left: 4rem;
+        cursor: pointer;
+    }
+
+    .add_cart:active {
+        transform: scale(0.98);
+    }
+
+    .add_cart svg {
+        margin-right: 1rem;
+    }
+
+    /* Dropdown Styling */
+    .selection {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .selection label {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--Darkgrayish);
+    }
+
+    .selection select {
+        width: 50%;
+        padding: 1rem;
+        font-size: 1.6rem;
+        border: 1px solid var(--Grayish);
+        border-radius: 5px;
+        background-color: var(--Lightgrayish);
+        color: var(--verydark);
+        cursor: pointer;
+        font-family: inherit;
+    }
+
+    .selection select:focus {
+        border-color: var(--Orange);
+        outline: none;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+        .producat_wrapper {
+            gap: 7rem;
+        }
+
+        .producat_content h2 {
+            font-size: 3rem;
+        }
+
+        .producat_des {
+            font-size: 1.4rem;
+            width: 70%;
+        }
+
+        .normal_price {
+            font-size: 2rem;
+        }
+
+        .add_cart {
+            padding: 1rem 4rem;
+        }
+
+        .img_thumbnail {
+            height: 400px; /* Adjust height for smaller screens */
+        }
+    }
+
+    @media (max-width: 992px) {
+        .producat_wrapper {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4rem;
+        }
+
+        .producat_image {
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .producat_content h2 {
+            font-size: 2.8rem;
+            width: 100%;
+        }
+
+        .producat_des {
+            width: 100%;
+        }
+
+        .add_cart {
+            padding: 1rem 3rem;
+            margin-left: 0;
+            margin-top: 2rem;
+        }
+
+        .img_thumbnail {
+            height: 350px; /* Adjust height for smaller screens */
+        }
+    }
+
+    @media (max-width: 768px) {
+        .producat_content h2 {
+            font-size: 2.4rem;
+        }
+
+        .producat_des {
+            font-size: 1.4rem;
+        }
+
+        .img_small img {
+            width: 22%;
+        }
+
+        .img_thumbnail {
+            height: 300px; /* Adjust height for smaller screens */
+        }
+    }
+
+    @media (max-width: 576px) {
+        .producat_wrapper {
+            gap: 2rem;
+        }
+
+        .producat_content h2 {
+            font-size: 2rem;
+        }
+
+        .producat_des {
+            font-size: 1.2rem;
+        }
+
+        .normal_price {
+            font-size: 1.8rem;
+        }
+
+        .add_cart {
+            padding: 1rem 2rem;
+        }
+
+        .add_cart svg {
+            margin-right: 0.5rem;
+        }
+
+        .img_thumbnail {
+            height: 250px; /* Adjust height for mobile screens */
+        }
+    }
+</style>
+
+<main id="products">
+    <div class="container">
+        <div class="producat_wrapper">
+            <div class="producat_image">
+                <div class="img_thumbnail">
+                    <img src="{{product.image.url}}" alt="Main Product Image" />
+                </div>
+            </div>
+            <div class="producat_content">
+                <p class="company_txt">{{ product.category.title }}</p>
+                <h2>{{ product.title }}</h2>
+                <p class="producat_des">
+                    {{ product.description }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque sapiente omnis magnam alias? Dolores aspernatur, eveniet animi commodi ab eius laboriosam aperiam, porro aliquid ut maxime molestiae, facilis illum laudantium.
+                </p>
+                <div class="price">
+                    <div class="dicscount_price">
+                        <p class="normal_price"  id="price">{{ product.priceTwo }}</p>
+                        <p><span class="discount">50%</span></p>
+                    </div>
+                    <p class="total_price">${{ product.priceOne }}</p>
+                </div>
+
+                <p id="total" class="normal_price"></p>
+
+
+                <!-- Size and Color Selection -->
+                <div class="selection">
+                    
+
+                    <label for="size">Size:</label>
+                    <select id="size">
+                        {% for size in sizes %}
+                        <option value="{{ size.id }}">{{ size.name }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <!-- Color selection -->
+                    <label for="color">Color:</label>
+                    <select id="color">
+                        {% for color in colors %}
+                        <option value="{{ color.id }}">{{ color.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Quantity and Add to Cart -->
+                <div class="qty" style="align-items: center; gap:20px;">
+                    <div class="btns" style="display: flex; align-items:center; gap:20px;">
+                        <button type="button" class="decreament"  id="minus" onclick="minus()">-</button>
+                        <p class="qty_numbers" id="qty">{{ cart.quantity }}</p>
+                        <button type="button" class="increament" id="add" onclick="addToCart()">+</button>
+                    </div>
+                    <button class="add_cart" type="button">
+                        <span>
+                            <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z"
+                                    fill="#ffffff" fill-rule="nonzero" />
+                            </svg>
+                        </span>
+                        <p><a style="color: white;"  href="{% url 'add_cart' product.id %}">Add to Cart</a></p>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<!-- 
+<h2><a href="{% url 'list' %}">Back to Products</a></h2>
+
+<p>{{ product.title }}</p>
+<p>{{ product.description }}</p>
+<p>{{ product.priceOne }}</p>
+<p id="price">{{ product.priceTwo }}</p>
+<p>{{ product.category.title }}</p>
+<p id="qty">{{ cart.quantity }}</p>
+<img src="{{product.image.url}}" alt="image">
+<p id="total"></p>
+
+<label for="size">Size:</label>
+<select id="size">
+    {% for size in sizes %}
+    <option value="{{ size.id }}">{{ size.name }}</option>
+    {% endfor %}
+</select>
+
+<label for="color">Color:</label>
+<select id="color">
+    {% for color in colors %}
+    <option value="{{ color.id }}">{{ color.name }}</option>
+    {% endfor %}
+</select>
+
+<button id="add" onclick="addToCart()">Add</button>
+<button id="minus" onclick="minus()">Minus</button>
+
+<a href="{% url 'add_cart' product.id %}">Add to Cart</a> -->
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    let price = document.getElementById("price");
+    let qty = document.getElementById("qty");
+    let total = document.getElementById("total");
+    let sizeSelect = document.getElementById("size");
+    let colorSelect = document.getElementById("color");
+
+    let price_val = Number(price.innerText);
+    let qty_val = Number(qty.innerText);
+
+    function updateQuantityDisplay() {
+        qty.innerText = qty_val;
+        total.innerText = (price_val * qty_val).toFixed(2); // Format total to 2 decimal places
+    }
+
+    function addToCart() {
+        qty_val += 1;
+        updateQuantityDisplay();
+        $.ajax({
+            url: "",
+            method: "POST",
+            data: {
+                'increment': true,
+                'size': sizeSelect.value,
+                'color': colorSelect.value,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function (data) {
+                qty_val = data.quantity;
+                updateQuantityDisplay();
+            }
+        });
+    }
+
+    function minus() {
+        qty_val -= 1;
+        if (qty_val < 1) qty_val = 1;  // Prevent negative quantity.
+        updateQuantityDisplay();
+        $.ajax({
+            url: "",
+            method: "POST",
+            data: {
+                'increment': false,
+                'size': sizeSelect.value,
+                'color': colorSelect.value,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function (data) {
+                qty_val = data.quantity;
+                updateQuantityDisplay();
+            }
+        });
+    }
+
+    updateQuantityDisplay();  // Initialize total.
+</script>
+{% endblock content %}

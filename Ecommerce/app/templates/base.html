@@ -1,0 +1,1092 @@
+{% load static %}
+{% load humanize %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Signika+Negative&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
+    * {
+        top: 0;
+        box-sizing: border-box;
+        padding: 0;
+        list-style: none;
+        text-decoration: none;
+        font-family: 'Signika Negative', sans-serif;
+        margin: 0;
+        top: 0;
+        left: 0;
+
+    }
+
+    a {
+        color: #8A33FD;
+    }
+
+    #navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 40px;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: white;
+        z-index: 1000;
+        margin: 0;
+        border-bottom: 1px solid #afa7a7;
+
+    }
+
+    body {
+        width: 100%;
+    }
+
+    #nav-left {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    #navbar #nav-middle ul,
+    #navbar #nav-middle ul li a {
+        display: flex;
+        gap: 20px;
+        color: black;
+    }
+
+    #nav-right {
+        display: flex;
+        gap: 12px;
+    }
+
+    #box {
+        display: none;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 12px;
+        gap: 12px;
+
+        width: 44px;
+        height: 44px;
+
+        background: #F6F6F6;
+        border-radius: 8px;
+
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+
+    }
+
+    #nav-right div {
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 12px;
+        gap: 12px;
+
+        width: 44px;
+        height: 44px;
+
+        background: #F6F6F6;
+        border-radius: 8px;
+
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+
+
+    }
+
+
+
+    #logout a {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 12px;
+        gap: 12px;
+        width: 44px;
+        height: 44px;
+        background: #F6F6F6;
+        border-radius: 8px;
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+        color: #000000;
+        width: 140px;
+
+
+    }
+
+
+    #nav-middle2_side {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        position: relative;
+    }
+
+    #nav-middle2 {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        position: relative;
+    }
+
+
+    #nav-middle2_side input {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 12px 20px;
+        gap: 12px;
+
+        width: 357px;
+        height: 44px;
+
+
+        background: #F6F6F6;
+        border-radius: 8px;
+        border: none;
+
+    }
+
+    #btn_search {
+        height: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+        background: transparent;
+        position: absolute;
+        margin-left: 85%;
+
+    }
+
+    #nav-middle2 input {
+        /* button */
+
+        /* Auto layout */
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 12px 20px;
+        gap: 12px;
+
+        width: 267px;
+        height: 44px;
+
+
+        background: #F6F6F6;
+        border-radius: 8px;
+        border: none;
+
+    }
+
+    .sidebar {
+        width: 50%;
+        background-color: white;
+        height: 100%;
+        position: fixed;
+        padding-top: 15px;
+        padding-left: 40px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+        transition: left 0.3s ease;
+        z-index: 1001;
+        left: -100%;
+
+
+
+    }
+
+    #sidebar_list {
+        display: flex;
+        flex-direction: column;
+        gap: 12rem;
+    }
+
+    #sidebar_list_pre {
+        display: flex;
+        flex-direction: column;
+        gap: 35px;
+    }
+
+
+
+    #sidebar_list ul {
+        display: flex;
+        flex-direction: column;
+        gap: 35px;
+        padding-right: 10%;
+    }
+
+
+    .sidebar_link a {
+        color: black;
+
+
+    }
+
+    .sidebar_link {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 12px;
+        gap: 12px;
+
+        height: 44px;
+
+        background: #F6F6F6;
+        border-radius: 8px;
+        width: 140px;
+
+
+
+    }
+
+
+    @media (max-width: 1150px) {
+
+        #box {
+            display: flex;
+        }
+
+        #nav-middle {
+            display: none;
+        }
+
+        #nav-middle2 {
+            display: none;
+        }
+
+
+        #hero1-left {
+            width: 100%;
+            text-align: center;
+        }
+
+        #shop {
+            width: 60%;
+            margin-left: 18%;
+        }
+
+        #hero1 {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .show {
+
+            width: 100%;
+            background-color: white;
+            height: 100%;
+            position: fixed;
+            padding-top: 15px;
+            padding-left: 40px;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            padding-right: 90px;
+            left: 0;
+            transition: left 0.3s ease;
+
+        }
+    }
+
+
+
+    #content {
+        border: 1px solid red;
+
+
+    }
+
+    img {
+        width: 150px;
+    }
+
+
+    #products {
+        display: flex;
+    }
+
+    #productSide {
+        top: 0;
+        left: 0;
+        width: 20%;
+        border: 2px solid #afa7a7;
+
+        padding-top: 30px;
+        padding-bottom: 30px;
+        margin-left: 3%;
+        position: sticky;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        background: white;
+        margin-bottom: 20px;
+
+    }
+
+
+    #filterproduct_ {
+        border-bottom: 1px solid #afa7a7;
+        padding-bottom: 10px;
+
+
+    }
+
+    #filterproduct_,
+    #productitems {
+        display: flex;
+        justify-content: space-between;
+        padding-left: 20px;
+        padding-right: 20px;
+        align-items: center;
+
+    }
+
+    #filterProduct {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    #product_list {
+        padding-top: 30px;
+        padding-bottom: 30px;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+
+    #product_listing {
+        margin-top: 30px;
+
+    }
+
+    #product_img img {
+        width: 210px;
+        height: 270px;
+        border-radius: 10px;
+    }
+
+    #__title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    #product__item {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+    }
+
+    #title__btn button {
+        background-color: #f3f3f3;
+        border: none;
+        border-radius: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    #product {
+        display: flex;
+    }
+
+    @media (max-width: 700px) {
+        #productSide {
+            width: 38%;
+        }
+
+
+
+    }
+
+    @media (max-width: 900px) {
+        #productSide {
+            width: 38%;
+        }
+
+
+
+
+    }
+
+
+
+
+    form:root {
+        --purple: #8A33FD;
+        --black: #3C4242;
+        --ash: #F6F6F6;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        top: 0;
+        bottom: 0;
+        /* min-height: 100vh; */
+        max-height: 100vh;
+        font-family: sans-serif;
+        text-decoration: none;
+    }
+
+    nav {
+        margin: 0.5rem 4rem;
+        align-items: center;
+        flex: 0 0 auto;
+    }
+
+    .nav-bar {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .logo {
+        font-weight: 700;
+        font-size: larger;
+        color: var(--black);
+    }
+
+    .nav-form {
+        display: flex;
+        align-items: center;
+        gap: 12rem;
+
+    }
+
+    .nav-form input {
+        padding: 0.5rem 1rem;
+        border: none;
+        width: 7rem;
+        border-radius: 3px;
+        background-color: var(--ash);
+        align-items: center;
+        align-content: center;
+        outline: none;
+    }
+
+    .nav-form input::placeholder {
+        color: var(--black);
+    }
+
+    nav button {
+        width: 7rem;
+        height: 2rem;
+        background-color: white;
+        color: var(--purple);
+        border: 1px solid var(--black);
+        border-radius: 5px;
+    }
+
+    .nav-btn {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .nav-btn :hover,
+    .nav-btn :focus {
+        transition: all 0.3s;
+        transform: scale(1.2);
+    }
+
+    .content {
+        margin-top: -0.6rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        height: 88vh;
+    }
+
+    .l-side {
+        width: 50vw;
+        background-image: url("{% static 'img/141a6e0bed0d04185319b5006a2d8877.jpeg'%}");
+        background-size: cover;
+        background-position: center;
+    }
+
+    .l2-side {
+        width: 50vw;
+        background-image: url("{% static 'img/a9385466fd08942b5f4ca85010e92b05.jpeg'%}");
+        background-size: cover;
+        background-position: center;
+
+    }
+
+    .l3-side {
+        width: 50vw;
+        background-image: url("{% static 'img/8139d8800a803982a3d0701a2ae1e162.jpeg'%}");
+        background-size: cover;
+        background-position: center;
+    }
+
+    .l4-side {
+        width: 50vw;
+        background-image: url("{% static 'img/a9385466fd08942b5f4ca85010e92b05.jpeg'%}");
+        background-size: cover;
+        background-position: center;
+        background-position: top;
+
+    }
+
+    .r-side {
+        margin: 2rem 5rem;
+    }
+
+    .r-side h2 {
+        font-size: x-large;
+    }
+
+    .r-side p {
+        font-size: 14px;
+        margin-bottom: 2rem;
+    }
+
+    .r-side a {
+        color: #8A33FD;
+        font-weight: 700;
+        text-decoration: none;
+    }
+
+    .r-side label {
+        display: block;
+        font-size: 14px;
+    }
+
+    .r-side input {
+        width: 70%;
+        margin-top: 0.5rem;
+        height: 2rem;
+        border: none;
+        border-radius: 5px;
+        outline: 2px solid #8A33FD;
+        margin-bottom: 0.5rem;
+        color: #8A33FD;
+        padding-left: 1rem;
+    }
+
+    .error {
+        color: red;
+        font-size: 12px;
+        margin-bottom: 2rem;
+    }
+
+    .r-side button {
+        background-color: #8A33FD;
+        width: 8rem;
+        height: 2.5rem;
+        border: none;
+        border-radius: 5px;
+        color: white;
+    }
+
+    .r-side button:hover,
+    button :focus {
+        transition: all 0.3s;
+        transform: scale(1.2);
+    }
+
+    .btn-sib {
+        font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+        nav {
+            margin: 0rem 1rem;
+            font-size: small;
+        }
+
+        .nav-btn {
+            display: none;
+        }
+
+        .nav-form {
+            display: none;
+        }
+
+        .content {
+            display: block;
+        }
+
+        .r-side {
+            margin: 2rem 1rem;
+            width: 90vw;
+
+        }
+
+        p {
+            font-size: medium;
+            word-wrap: break-word;
+        }
+
+        .r-side input {
+            width: 85vw;
+        }
+
+        .r-side button :hover,
+        .r-side button:active {
+            transition: none;
+            transform: none;
+        }
+    }
+
+    @media (min-width: 600px) {
+        .nav-form {
+            display: none;
+        }
+
+        .r-side input {
+            width: 35vw;
+        }
+    }
+
+    .image_cart img {
+        width: 10rem;
+        height: 10rem;
+        border-radius: 4px;
+    }
+
+    hr {
+        border: 0.5px solid black;
+    }
+
+
+
+    #cart_body {
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        display: flex;
+        gap: 30px;
+    }
+
+    #body1 {
+        display: block;
+    }
+
+
+
+    * {
+        box-sizing: border-box;
+    }
+
+
+
+    .shopping-cart {
+        width: 750px;
+        margin: 80px auto;
+        background: #FFFFFF;
+        box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.10);
+        border-radius: 6px;
+        padding-bottom: 3rem;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .title {
+        height: 60px;
+        border-bottom: 1px solid #E1E8EE;
+        padding: 20px 30px;
+        color: #5E6977;
+        font-size: 18px;
+        font-weight: 400;
+    }
+
+    .item {
+        padding: 20px 30px;
+        display: flex;
+        border-top: 1px solid #E1E8EE;
+        border-bottom: 1px solid #E1E8EE;
+    }
+
+    .item:nth-child(3) {
+        border-top: 1px solid #E1E8EE;
+        border-bottom: 1px solid #E1E8EE;
+    }
+
+    /* Buttons -  Delete and Like */
+    .buttons {
+        position: relative;
+        padding-top: 30px;
+        margin-right: 60px;
+    }
+
+    .delete-btn {
+        display: inline-block;
+        cursor: pointer;
+        width: 18px;
+        height: 17px;
+        background: url("delete-icn.svg") no-repeat center;
+        margin-right: 20px;
+    }
+
+    .like-btn {
+        position: absolute;
+        top: 9px;
+        left: 15px;
+        display: inline-block;
+        background: url('twitter-heart.png');
+        width: 60px;
+        height: 60px;
+        background-size: 2900%;
+        background-repeat: no-repeat;
+        cursor: pointer;
+    }
+
+    .is-active {
+        animation-name: animate;
+        animation-duration: .8s;
+        animation-iteration-count: 1;
+        animation-timing-function: steps(28);
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes animate {
+        0% {
+            background-position: left;
+        }
+
+        50% {
+            background-position: right;
+        }
+
+        100% {
+            background-position: right;
+        }
+    }
+
+    /* Product Image */
+    .image {
+        margin-right: 50px;
+    }
+
+    /* Product Description */
+    .description {
+        padding-top: 10px;
+        margin-right: 60px;
+        width: 115px;
+    }
+
+    .description span {
+        display: block;
+        font-size: 14px;
+        color: #43484D;
+        font-weight: 400;
+    }
+
+    .description span:first-child {
+        margin-bottom: 5px;
+    }
+
+    .description span:last-child {
+        font-weight: 300;
+        margin-top: 8px;
+        color: #86939E;
+    }
+
+    /* Product Quantity */
+    .quantity {
+        padding-top: 20px;
+        margin-right: 60px;
+    }
+
+    .quantity input {
+        border: none;
+        text-align: center;
+        width: 32px;
+        font-size: 16px;
+        color: #43484D;
+        font-weight: 300;
+    }
+
+    button[class*=btn] {
+        width: 30px;
+        height: 30px;
+        background-color: #E1E8EE;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .minus-btn img {
+        margin-bottom: 3px;
+    }
+
+    .plus-btn img {
+        margin-top: 2px;
+    }
+
+    button:focus,
+    input:focus {
+        outline: 0;
+    }
+
+    /* Total Price */
+    .total-price {
+        width: 83px;
+        padding-top: 27px;
+        text-align: center;
+        font-size: 16px;
+        color: #43484D;
+        font-weight: 300;
+    }
+
+
+    .total-prices {
+        padding-top: 27px;
+        text-align: right;
+        font-size: 16px;
+        color: #43484D;
+        font-weight: 300;
+        padding-right: 70px;
+    }
+
+    /* Responsive */
+    @media (max-width: 800px) {
+        .shopping-cart {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            padding-bottom: 3rem;
+
+        }
+
+        .item {
+            height: auto;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .image img {
+            width: 50%;
+        }
+
+        .image,
+        .quantity,
+        .description {
+            width: 100%;
+            text-align: center;
+            margin: 6px 0;
+        }
+
+        .buttons {
+            margin-right: 20px;
+        }
+    }
+</style>
+
+<body>
+    <div id="">
+
+
+        {% if user.is_authenticated %}
+
+
+        <div id="wholebody">
+            <div id="navbar">
+
+                <div id="nav-left">
+                    <div id="box"> <i class="fa-solid fa-bars fa-lg" style="color: #000000;" onclick="toggleSide()"></i>
+                    </div>
+                    <!-- <img src="image.png" alt="" width="120px"> -->
+                    <p>v {{count_cart}}</p>
+
+                    <h2 style="font-family: 'Satisfy', cursive;">Olanike's</h2>
+                </div>
+                <div id="nav-middle">
+                    <ul>
+                        <li><a href="{% url 'list' %}" class="links">products</a></li>
+                        <li><a href="{% url 'profile' %}" class="links">profile</a></li>
+
+
+                    </ul>
+                </div>
+                <form action="{% url 'search' %}" method="post">
+                    {% csrf_token %}
+                    <div id="nav-middle2">
+                        <input type="search" name="search_term" id="" placeholder="search here">
+                        <button id="btn_search" type="submit"><i class="fa-solid fa-magnifying-glass"
+                                style="color: #000000;"></i></button>
+                    </div>
+
+                </form>
+
+                <div id="nav-right">
+                    <div><a href="{% url 'wishlist' %}"> <i class="fa-regular fa-heart fa-lg"
+                                style="color: #000000;"></i></a> </div>
+                    
+                    <div><a href="{% url 'cart_list' %}"><i class="fa-solid fa-cart-shopping fa-lg"
+                                style="color: #000000;"></i></a></div>
+                                <div><a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket fa-rotate-180 fa-lg"
+                                    style="color: #000000;"></i></a></div>
+                    <!-- <div><a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket" style="color: #000000;"></i></a></div> -->
+
+                </div>
+            </div>
+            <div class="sidebar">
+                <div id="nav-left">
+                    <div id="box"> <i class="fa-solid fa-bars fa-lg" style="color: #000000;" onclick="toggleSide()"></i>
+                    </div>
+                    <h1 id="logo" style="font-family: 'Satisfy', cursive;">Olanike's</h1>
+                </div>
+                <div id="sidebar_list">
+                    <div id="sidebar_list_pre">
+                        <ul>
+
+                            <form action="{% url 'search' %}" method="post">
+                                {% csrf_token %}
+                                <div id="nav-middle2_side">
+                                    <input type="search" name="search_term" id="" placeholder="search here">
+                                    <button id="btn_search" type="submit"><i class="fa-solid fa-magnifying-glass"
+                                            style="color: #000000;"></i></button>
+                                </div>
+
+                            </form>
+                            <li class="sidebar_link"><a href="{% url 'list' %}" class="links">products</a></li>
+                            <li class="sidebar_link"><a href="{% url 'profile' %}" class="links">profile</a></li>
+
+
+
+
+                        </ul>
+
+
+
+
+                        <div id="nav-right">
+                            <div><a href="{% url 'wishlist' %}"> <i class="fa-regular fa-heart fa-lg"
+                                        style="color: #000000;"></i></a> </div>
+                            <div><a href="{% url 'profile' %}"><i class="fa-regular fa-user fa-lg"
+                                        style="color: #000000;"></i></a></div>
+                            <div><a href="{% url 'cart_list' %}"><i class="fa-solid fa-cart-shopping fa-lg"
+                                        style="color: #000000;"></i></a></div>
+
+                        </div>
+                    </div>
+
+                    <div id="logout"><a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"
+                                style="color: #000000;"></i> <span>Logout</span></a></div>
+
+
+                </div>
+
+            </div>
+        </div>
+        {% else %}
+        <div id="navbar">
+            <div id="nav-left" style="font-family: 'Satisfy', cursive;">
+                <h2  style="font-family: 'Satisfy', cursive;">Olanike's</h2>
+            </div>
+            <div id="nav-middle">
+                <ul>
+                </ul>
+            </div>
+            <div id="nav-right">
+                <li><a href="{% url 'login' %}">Login </a></li>
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+
+    <div id="product_list" style="margin-left: 8%; ">
+        {% if query %}
+        <div>
+            <li id="p_count" style="margin-top: 50px;">found {{count}} result for {{query}} </li>
+            <p>{{count_cart}}</p>
+
+            <h3>{{category_get}}</h3>
+        </div>
+        <div id="product__item">
+            <div id="product_listing" style="display: flex; gap:50px; flex-wrap:wrap;">
+                {% for product in product %}
+
+                <div id="product_box">
+                    <div id="product_img">
+                        <img src="{{product.image.url}}" alt="">
+                    </div>
+                    <div id="__title">
+                        <div id="product__title">
+                            <h4 id="title1"><a href="{% url 'details' product.uu_id %}">{{product.title}}</a></h4>
+                            <p id="title2" style="width: 140px;">{{product.description}}</p>
+                        </div>
+                        <div id="title__btn">
+                            <button> &#8358 {{product.priceTwo|intcomma}}</button>
+                        </div>
+
+
+                    </div>
+                    <div style="display: flex; align-items:center; justify-content:space-between; margin-top:10px;">
+                        <p>item remaining : {{product.item_remaining}}</p>
+                        <a href="{% url 'wishlist' product.uu_id %}"> <i class="fa-regular fa-heart fa-lg"
+                                style="color: red; " onclick="wishlist()" id="wishlist"></i></a>
+
+                    </div>
+
+
+                </div>
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+
+
+        {% endif %}
+
+    </div>
+
+    {% block content %}
+
+    {% endblock content %}
+    {% include 'footer.html' %}
+
+
+    <script>
+        let sidebar = document.querySelector(".sidebar")
+        let wishlists = document.getElementById("wishlist")
+
+        function toggleSide() {
+            sidebar.classList.toggle("show")
+
+
+        }
+
+        function wishlist() {
+            wishlists.style.color = "red"
+
+        }
+    </script>
+
+
+
+</body>
+
+</html>
